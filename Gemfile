@@ -42,6 +42,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+gem 'slim-rails'
+gem 'rails-controller-testing'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
