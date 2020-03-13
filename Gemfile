@@ -19,6 +19,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'capybara-webkit'
 end
 
 group :development do
@@ -30,7 +32,6 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   gem 'webdrivers'
   gem 'shoulda-matchers'
   gem 'launchy'
