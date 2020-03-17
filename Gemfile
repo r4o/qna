@@ -14,6 +14,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'slim-rails'
 gem 'rails-controller-testing'
 gem 'devise'
+gem 'coffee-rails'
+gem 'jquery-rails'
+gem "twitter-bootstrap-rails"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
