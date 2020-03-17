@@ -17,6 +17,7 @@ gem 'devise'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem "twitter-bootstrap-rails"
+gem 'carrierwave'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
