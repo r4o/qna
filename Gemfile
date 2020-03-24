@@ -19,6 +19,8 @@ gem 'jquery-rails'
 gem "twitter-bootstrap-rails"
 gem 'carrierwave'
 gem 'remotipart'
+gem 'private_pub'
+gem 'thin'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
