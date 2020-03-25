@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :questions do
+
+  concern :commentable do
+    resources :comments
+  end
+
+  resources :questions, concerns: :commentable do
     resources :answers
   end
 
+  resources :answers, only: [], concerns: :commentable
+
   root to: "questions#index"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
