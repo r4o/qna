@@ -21,6 +21,7 @@ gem 'carrierwave'
 gem 'remotipart'
 gem 'private_pub'
 gem 'thin'
+gem 'inherited_resources'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
