@@ -1,19 +1,46 @@
-class QuestionsController < InheritedResources::Base
+class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :load_question, only: [:show, :edit, :update, :destroy]
   before_action :build_answer, only: :show
-  before_action :build_attachment, only: :new
 
   respond_to :html
 
-  protected
-
-  def build_answer
-    @answer = resource.answers.build
-    @answer.attachments.build
+  def index
+    respond_with(@questions = Question.all)
   end
 
-  def build_attachment
-    build_resource.attachments.build
+  def show
+    respond_with @question
+  end
+
+  def new
+    respond_with(@question = Question.new)
+  end
+
+  def edit
+  end
+
+  def create
+    respond_with(@question = Question.create(question_params))
+  end
+
+  def update
+    @question.update(question_params)
+    respond_with @question
+  end
+
+  def destroy
+    respond_with(@question.destroy)
+  end
+
+  private
+
+  def load_question
+    @question = Question.find(params[:id])
+  end
+
+  def build_answer
+    @answer = @question.answers.build
   end
 
   def question_params

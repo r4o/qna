@@ -5,11 +5,10 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :questions, concerns: :commentable do
-    resources :answers
+  resources :questions, concerns: :commentable, shallow: true do
+    resources :answers, concerns: :commentable
   end
 
-  resources :answers, only: [], concerns: :commentable
 
   root to: "questions#index"
 end

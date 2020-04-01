@@ -1,23 +1,31 @@
-class AnswersController < InheritedResources::Base
-  respond_to :js, :json
-  actions :create, :update
+class AnswersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :load_answer, only: :update
+  after_action :publish_answer, only: :create
 
-  belongs_to :question
-
+  respond_to :js
+  respond_to :json, only: :create
 
   def create
-    create! do |success, failure|
-      success.js do
-        PrivatePub.publish_to "/questions/#{parent.id}/answers", answer: resource.to_json
-        render nothing: true
-      end
-      success.json { render json: resource.to_json }
+    @question = Question.find(params[:question_id])
+    respond_with(@answer = @question.answers.create(answer_params))
+  end
 
-      failure.json { render json: @answer.errors.full_messages, status: :unprocessable_entity }
-    end
+  def update
+    @answer.update(answer_params)
+    respond_with @answer
   end
 
   private
+
+  def load_answer
+    @answer = Answer.find(params[:id])
+    @question = @answer.question
+  end
+
+  def publish_answer
+    PrivatePub.publish_to("/questions/#{@question.id}/answers", answer: @answer.to_json) if @answer.valid?
+  end
 
   def answer_params
     params.require(:answer).permit(:body, attachments_attributes: [:file])
