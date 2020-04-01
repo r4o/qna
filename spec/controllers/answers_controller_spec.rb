@@ -9,9 +9,9 @@ RSpec.describe AnswersController, type: :controller do
         expect { post :create, params: { answer: attributes_for(:answer), question_id: question, format: :js } }.to change(question.answers, :count).by(1)
       end
 
-      it 'render nothing' do
+      it 'render create template' do
         post :create, params: { answer: attributes_for(:answer), question_id: question, format: :js }
-        expect(response.body).to be_blank
+        expect(response).to render_template :create
       end
     end
 
