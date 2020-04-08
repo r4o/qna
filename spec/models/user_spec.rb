@@ -27,8 +27,7 @@ RSpec.describe User, type: :model do
         end
 
         it 'creates authorization with provider and uid' do
-          user = User.find_for_oauth(auth)
-          authorization = user.authorizations.first
+          authorization = User.find_for_oauth(auth).authorizations.first
 
           expect(authorization.provider).to eq auth.provider
           expect(authorization.uid).to eq auth.uid
