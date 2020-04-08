@@ -8,10 +8,11 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.find(params[:question_id])
-    respond_with(@answer = @question.answers.create(answer_params))
+    respond_with(@answer = @question.answers.create(answer_params.merge(user: current_user)))
   end
 
   def update
+    authorize @answer
     @answer.update(answer_params)
     respond_with @answer
   end
