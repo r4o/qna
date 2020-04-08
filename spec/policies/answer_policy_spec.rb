@@ -13,5 +13,9 @@ RSpec.describe AnswerPolicy, type: :policy do
     it 'grant access if user is author' do
       expect(subject).to permit(user, create(:answer, user: user))
     end
+
+    it 'denies access if user is not author' do
+      expect(subject).not_to permit(User.new, create(:answer, user: user))
+    end
   end
 end
