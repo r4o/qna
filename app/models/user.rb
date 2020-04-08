@@ -13,5 +13,6 @@ class User < ApplicationRecord
     email = auth.info[:email]
     user = User.where(email: email).first
     user.authorizations.create(provider: auth.provider, uid: auth.uid) if user
+    user
   end
 end
