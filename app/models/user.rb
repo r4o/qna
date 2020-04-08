@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
   def self.find_for_oauth(auth)
     authorization = Authorization.where(provider: auth.provider, uid: auth.uid.to_s).first
-    authorization.user if authorization
+    return authorization.user if authorization
+
+    email = auth.info[:email]
+    user = User.where(email: email).first
+    user.authorizations.create(provider: auth.provider, uid: auth.uid) if user
   end
 end

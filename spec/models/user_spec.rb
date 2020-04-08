@@ -21,6 +21,10 @@ RSpec.describe User, type: :model do
         it 'does not create new user' do
           expect { User.find_for_oauth(auth).to_not change(User, :count) }
         end
+
+        it 'creates authorization for user' do
+          expect { User.find_for_oauth(auth).to change(user.authorizations, :count).by(1) }
+        end
       end
     end
   end
