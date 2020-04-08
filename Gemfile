@@ -25,6 +25,7 @@ gem 'responders'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'cancancan'
+gem 'pundit'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
