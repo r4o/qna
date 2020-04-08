@@ -10,7 +10,7 @@ class Ability
       else
         can :read, :all
         can :create, [Question, Answer, Comment]
-        can :update, Question, user: user
+        can :update, [Question, Answer], user: user
       end
     else
       can :read, :all
