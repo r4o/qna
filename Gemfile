@@ -48,6 +48,7 @@ group :test do
   gem 'webdrivers'
   gem 'shoulda-matchers'
   gem 'launchy'
+  gem 'json_spec'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
