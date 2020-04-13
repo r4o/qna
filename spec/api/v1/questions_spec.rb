@@ -15,7 +15,7 @@ describe 'Questions API' do
     end
 
     context 'authorized' do
-      let(:access_token) { create(:user) }
+      let(:access_token) { create(:access_token) }
 
       it 'returns 200 status code' do
         get '/api/v1/questions', format: :json, access_token: access_token.token
