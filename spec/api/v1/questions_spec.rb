@@ -18,8 +18,9 @@ describe 'Questions API' do
       let(:access_token) { create(:access_token) }
       let(:questions) { create_list(:question, 2) }
 
+      before { get '/api/v1/questions', format: :json, access_token: access_token.token }
+
       it 'returns 200 status code' do
-        get '/api/v1/questions', format: :json, access_token: access_token.token
         expect(response).to be_success
       end
 
