@@ -16,7 +16,7 @@ describe 'Questions API' do
 
     context 'authorized' do
       let(:access_token) { create(:access_token) }
-      let(:questions) { create_list(:question, 2) }
+      let!(:questions) { create_list(:question, 2) }
 
       before { get '/api/v1/questions', format: :json, access_token: access_token.token }
 
