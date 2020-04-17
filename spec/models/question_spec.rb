@@ -32,4 +32,9 @@ RSpec.describe Question, type: :model do
       expect { subject.save! }.to change(user, :reputation).by(5)
     end
   end
+
+  it 'test double' do
+    allow(Question).to receive(:find) { double(Question, title: '123') }
+    expect(Question.find(155).title).to eq '123'
+  end
 end
