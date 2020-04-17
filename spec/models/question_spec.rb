@@ -14,7 +14,7 @@ RSpec.describe Question, type: :model do
   its(:title) { should == "MyString" }
 
   it 'should calculate reputation after creating' do
-    expect(Reputation).to receive(:calculate)
+    expect(Reputation).to receive(:calculate).with(subject)
     subject.save!
   end
 
