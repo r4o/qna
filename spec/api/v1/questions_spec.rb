@@ -15,19 +15,25 @@ describe 'Questions API' do
     end
 
     context 'authorized' do
-      let(:access_token) { create(:access_token) }
       let!(:questions) { create_list(:question, 2) }
       let(:question) { questions.first }
+      let(:access_token) { create(:access_token) }
       let!(:answer) { create(:answer, question: question) }
 
-      before { get '/api/v1/questions', format: :json, access_token: access_token.token }
+      before do
+        get '/api/v1/questions', format: :json, access_token: access_token.token
+      end
 
       it 'returns 200 status code' do
-        expect(response).to be_success
+        expect(response.status).to eq 200
       end
 
       it 'returns list of questions' do
-        expect(response.body).to have_json_size(2).at_path("questions")
+        expect(response.body).to have_json_size(2).at_path('questions')
+      end
+
+      it 'contains timestamp' do
+        expect(response.body).to be_json_eql(questions.last.created_at.to_json).at_path("meta/timestamp")
       end
 
       %w(id title body created_at updated_at).each do |attr|
