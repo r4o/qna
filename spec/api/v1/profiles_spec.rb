@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'Profile API' do
   describe 'Resource Owner Profile' do
+    let(:do_request) { get 'api/v1/profiles/me', format: :json }
+    
     it_behaves_like "API Authenticable"
 
     context 'authorized' do
