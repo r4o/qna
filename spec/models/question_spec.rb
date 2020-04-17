@@ -31,6 +31,13 @@ RSpec.describe Question, type: :model do
       allow(Reputation).to receive(:calculate).and_return(5)
       expect { subject.save! }.to change(user, :reputation).by(5)
     end
+
+    it 'test time' do
+      now = Time.now.utc
+      allow(Time).to receive(:now) { now }
+      subject.save!
+      expect(subject.created_at).to eq now
+    end
   end
 
   it 'test double' do
