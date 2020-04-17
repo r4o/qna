@@ -14,13 +14,13 @@ RSpec.describe Question, type: :model do
   its(:title) { should == "MyString" }
 
   it 'should calculate reputation after creating' do
-    expect(subject).to receive(:calculate_reputation)
+    expect(Reputation).to receive(:calculate)
     subject.save!
   end
 
   it 'should not calculate reputation after update' do
     subject.save!
-    expect(subject).to_not receive(:calculate_reputation)
+    expect(Reputation).to_not receive(:calculate)
     subject.update(title: '123')
   end
 end

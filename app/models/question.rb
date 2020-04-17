@@ -13,6 +13,6 @@ class Question < ApplicationRecord
   private
 
   def calculate_reputation
-
+    Reputation.calculate
   end
 end
