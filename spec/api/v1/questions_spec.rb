@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe 'Questions API' do
   describe 'GET /index' do
-    let(:do_request) { get 'api/v1/questions', format: :json }
-
     it_behaves_like "API Authenticable"
 
     context 'authorized' do
@@ -45,6 +43,10 @@ describe 'Questions API' do
           end
         end
       end
+    end
+
+    def do_request(options = {})
+      get 'api/v1/questions', { format: :json }.merge(options)
     end
   end
 end

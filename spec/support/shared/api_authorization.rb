@@ -6,7 +6,7 @@ shared_examples_for "API Authenticable" do
     end
 
     it 'returns 401 status if access_token is invalid' do
-      do_request
+      do_request(access_token: '123')
       expect(response.status).to eq 401
     end
   end
