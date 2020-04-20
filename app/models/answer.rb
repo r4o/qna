@@ -1,5 +1,6 @@
 class Answer < ApplicationRecord
   belongs_to :question
+  belongs_to :user
   has_many :attachments, as: :attachmentable
   has_many :comments, as: :commentable
 
@@ -8,4 +9,12 @@ class Answer < ApplicationRecord
   accepts_nested_attributes_for :attachments
 
   default_scope -> { order :created_at}
+
+  after_create :calculate_rating
+
+  private
+
+  def calculate_rating
+    Reputation.calculate(self)
+  end
 end
