@@ -10,6 +10,9 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'cancan/matchers'
 require 'pundit/rspec'
+require 'sidekiq/testing'
+
+Sidekiq::Testing.inline!
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
