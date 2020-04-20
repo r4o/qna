@@ -18,6 +18,7 @@ RSpec.describe User, type: :model do
     context 'user has not authorization' do
       context 'user already exists' do
         let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456', info: { email: user.email }) }
+
         it 'does not create new user' do
           expect { User.find_for_oauth(auth).to_not change(User, :count) }
         end
@@ -65,6 +66,15 @@ RSpec.describe User, type: :model do
           expect(authorization.uid).to eq auth.uid
         end
       end
+    end
+  end
+
+  describe '.send_daily_digest' do
+    let(:users) { create_list(:user, 2) }
+
+    it 'should send daily digest to all users' do
+      users.each { |user| expect(DailyMailer).to receive(:digest).with(user) }
+      user.send_daily_digest
     end
   end
 end
