@@ -34,6 +34,7 @@ gem 'oj_mimic_json'
 gem 'whenever'
 gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', require: nil
+gem 'sidetiq'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
