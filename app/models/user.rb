@@ -24,8 +24,8 @@ class User < ApplicationRecord
   end
 
   def self.send_daily_digest
-    all.each do |user|
-      DailyMailer.digest(user).deliver
+    find_each.each do |user|
+      DailyMailer.delay.digest(user)
     end
   end
 
