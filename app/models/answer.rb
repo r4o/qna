@@ -15,6 +15,6 @@ class Answer < ApplicationRecord
   private
 
   def calculate_rating
-    Reputation.calculate(self)
+    Reputation.delay.calculate(self)
   end
 end
